@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Dragging functionality
     function dragStart(e) {
-        e.dataTransfer.setData("text", e.target.id);
+        e.dataTransfer.setData("text", e.target.id); // Save the id of the dragged piece
     }
 
     function dragEnd(e) {
@@ -44,17 +44,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Allow drop on board squares
     board.addEventListener("dragover", (e) => {
-        e.preventDefault();
+        e.preventDefault();  // Allow drop
     });
 
     board.addEventListener("drop", (e) => {
-        const pieceId = e.dataTransfer.getData("text");
-        const draggedPiece = document.getElementById(pieceId);
-        const targetSquare = e.target.closest(".square");
+        e.preventDefault();
+        const pieceId = e.dataTransfer.getData("text"); // Get the id of the dragged piece
+        const draggedPiece = document.getElementById(pieceId); // The piece being dragged
+        const targetSquare = e.target.closest(".square"); // The square where it's dropped
 
-        if (targetSquare && !targetSquare.querySelector("img")) {
+        // If a square exists
+        if (targetSquare) {
+            const existingPiece = targetSquare.querySelector("img"); // Check if square has an existing piece
+
+            // If the square contains a piece, it will be "captured" (removed)
+            if (existingPiece) {
+                existingPiece.remove();  // Capture the existing piece by removing it
+            }
+
+            // Add the dragged piece to the target square
             targetSquare.appendChild(draggedPiece);
         }
     });
 });
-
