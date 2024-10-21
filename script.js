@@ -67,3 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+class Server{
+    constructor(url) {
+        this.url = url;
+    }
+}

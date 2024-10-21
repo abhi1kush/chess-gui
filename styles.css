@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body {
+#layout {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,11 +10,39 @@ body {
     margin: 0;
 }
 
+#leftspace{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    height: 100%;
+    width: 25%;
+}
+
+#middle{
+    height: 100vh;
+    width: 50%;
+}
+
 #chessboard {
     display: grid;
-    grid-template-columns: repeat(8, 80px);
-    grid-template-rows: repeat(8, 80px);
-    border: 2px solid #333;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    border: 2px solid #800d0d;
+    aspect-ratio: 1;
+}
+
+
+
+.whiteplayer{
+    height: 10%;
+    width: 10%;
+    align-self: flex-start;
+}
+
+.blackplayer{
+    align-self: flex-end;
 }
 
 .square {
@@ -24,10 +52,12 @@ body {
 
 .dark {
     background-color: #769656;
+    aspect-ratio: 1;
 }
 
 .light {
     background-color: #eeeed2;
+    aspect-ratio: 1;
 }
 
 img {
